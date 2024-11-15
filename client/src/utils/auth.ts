@@ -3,18 +3,18 @@ import type { UserData } from '../interfaces/UserData';
 
 class AuthService {
   getProfile() {
-    // TODO: return the decoded token
+    // return the decoded token
     return jwtDecode<UserData>(this.getToken());
   }
 
   loggedIn() {
-    // TODO: return a value that indicates if the user is logged in
+    // return a value that indicates if the user is logged in
     const token = this.getToken();
     return !!token && !this.isTokenExpired(token);
   }
   
   isTokenExpired(token: string) {
-    // TODO: return a value that indicates if the token is expired
+    // return a value that indicates if the token is expired
     try{
       // Attempt to decode the provided token using jwtDecode, expecting a JwtPayload type
       const decoded = jwtDecode<JwtPayload>(token);
@@ -28,22 +28,22 @@ class AuthService {
 }
 
   getToken(): string {
-    // TODO: return the token
+    // return the token
     const loggedUser = localStorage.getItem('id_token') || '';
     return loggedUser;
   }
 
   login(idToken: string) {
-    // TODO: set the token to localStorage
+    // set the token to localStorage
     localStorage.setItem('id_token', idToken);
-    // TODO: redirect to the home page
+    // redirect to the home page
     window.location.assign('/');
   }
 
   logout() {
-    // TODO: remove the token from localStorage
+    // remove the token from localStorage
     localStorage.removeItem('id_token');
-    // TODO: redirect to the login page
+    // redirect to the login page
     window.location.assign('/login');
   }
 }
