@@ -18,6 +18,7 @@ class AuthService {
     try{
       // Attempt to decode the provided token using jwtDecode, expecting a JwtPayload type
       const decoded = jwtDecode<JwtPayload>(token);
+      console.log(decoded);
       const currentTime = Math.floor(Date.now() / 1000);
       return decoded.exp ? decoded.exp < currentTime : true;
   } catch (error) {

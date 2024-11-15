@@ -3,12 +3,15 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from '../utils/auth';
 import { login } from "../api/authAPI";
 
+
 const Login = () => {
   const [loginData, setLoginData] = useState({
     username: '',
     password: ''
   });
-
+  
+  const [loginMessage, setLoginMessage] = useState('');
+  
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setLoginData({
@@ -24,6 +27,7 @@ const Login = () => {
       Auth.login(data.token);
     } catch (err) {
       console.error('Failed to login', err);
+      setLoginMessage('Invalid Username or Password')
     }
   };
 
@@ -46,6 +50,7 @@ const Login = () => {
           onChange={handleChange}
         />
         <button type='submit'>Submit Form</button>
+        <p>{loginMessage}</p>
       </form>
     </div>
     
